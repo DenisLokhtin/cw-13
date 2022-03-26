@@ -27,6 +27,10 @@ const review = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: 'User',
   },
+  Resto: {
+    type: mongoose.Types.ObjectId,
+    ref: 'Resto',
+  },
 });
 
 const Review = mongoose.model('Review', review);

@@ -9,6 +9,10 @@ const images = new mongoose.Schema({
     type: mongoose.Types.ObjectId,
     ref: 'User',
   },
+  Resto: {
+    type: mongoose.Types.ObjectId,
+    ref: 'Resto',
+  },
 });
 
 const Image = mongoose.model('Image', images);

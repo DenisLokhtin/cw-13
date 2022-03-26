@@ -18,14 +18,14 @@ const RestoSchema = new mongoose.Schema({
     ref: 'User',
     required: 'Юзер является обязательным полем',
   },
-  userReview: {
+  userReview: [{
     type: mongoose.Types.ObjectId,
     ref: 'Review',
-  },
-  userImage: {
+  }],
+  userImage: [{
     type: mongoose.Types.ObjectId,
     ref: 'Image',
-  },
+  }],
 });
 
 

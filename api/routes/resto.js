@@ -32,7 +32,7 @@ router.delete('/:id', auth, async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const resto = await Resto.find({}).populate('user').populate('userReview').populate('userImage');
+    const resto = await Resto.find({}).populate('user');
 
     res.send(resto);
   } catch (e) {

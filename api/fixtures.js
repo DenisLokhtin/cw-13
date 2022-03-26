@@ -3,6 +3,8 @@ const {nanoid} = require('nanoid');
 const config = require('./config');
 const Resto = require("./models/Resto");
 const User = require("./models/User");
+const Review = require("./models/Review");
+const Image = require("./models/Images");
 
 const run = async () => {
   await mongoose.connect(config.db.url);
@@ -32,138 +34,179 @@ const run = async () => {
     },
   );
 
-  await Resto.create(
+  const [resto1, resto2] = await Resto.create(
     {
       title: 'KFC',
       description: 'Etiam ornare dictum consectetur. Nunc iaculis tortor at neque molestie auctor. Aliquam eget imperdiet turpis. Donec vel quam mauris. Vivamus gravida placerat dui sit amet iaculis. Phasellus viverra finibus orci et pellentesque. Sed vehicula felis sed felis consequat, eget molestie ex rhoncus. Quisque id venenatis lectus, ut malesuada velit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur auctor sapien sed consequat placerat.',
       image: 'fixtures/1.jpeg',
       user: user1._id,
-      userReview: [
-        {
-          description: 'Etiam ornare dictum consectetur. Nunc iaculis tortor at neque molestie auctor. Aliquam eget imperdiet turpis. Donec vel quam mauris. Vivamus gravida placerat dui sit amet iaculis. Phasellus viverra finibus orci et pellentesque.',
-          ReviewFood: 3,
-          ReviewQuality: 3,
-          ReviewInterior: 0,
-          User: user1._id,
-        },
-        {
-          description: 'Etiam ornare dictum consectetur. Nunc iaculis tortor at neque molestie auctor. Aliquam eget imperdiet turpis. Donec vel quam mauris. Vivamus gravida placerat dui sit amet iaculis. Phasellus viverra finibus orci et pellentesque.',
-          ReviewFood: 1,
-          ReviewQuality: 1,
-          ReviewInterior: 0,
-          User: user1._id,
-        },
-        {
-          description: 'Etiam ornare dictum consectetur. Nunc iaculis tortor at neque molestie auctor. Aliquam eget imperdiet turpis. Donec vel quam mauris. Vivamus gravida placerat dui sit amet iaculis. Phasellus viverra finibus orci et pellentesque.',
-          ReviewFood: 5,
-          ReviewQuality: 5,
-          ReviewInterior: 0,
-          User: user2._id,
-        },
-      ],
-      userImage: [
-        {
-          image: 'fixtures/2.jpeg',
-          user: user1._id,
-        },
-        {
-          image: 'fixtures/2.jpeg',
-          user: user1._id,
-        },
-        {
-          image: 'fixtures/2.jpeg',
-          user: user1._id,
-        },
-        {
-          image: 'fixtures/2.jpeg',
-          user: user1._id,
-        },
-        {
-          image: 'fixtures/2.jpeg',
-          user: user1._id,
-        },
-        {
-          image: 'fixtures/2.jpeg',
-          user: user1._id,
-        },
-        {
-          image: 'fixtures/2.jpeg',
-          user: user1._id,
-        },
-        {
-          image: 'fixtures/2.jpeg',
-          user: user1._id,
-        },
-      ]
     },
     {
       title: 'Macdonalds',
       description: 'Etiam ornare dictum consectetur. Nunc iaculis tortor at neque molestie auctor. Aliquam eget imperdiet turpis. Donec vel quam mauris. Vivamus gravida placerat dui sit amet iaculis. Phasellus viverra finibus orci et pellentesque. Sed vehicula felis sed felis consequat, eget molestie ex rhoncus. Quisque id venenatis lectus, ut malesuada velit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur auctor sapien sed consequat placerat.',
       image: 'fixtures/3.jpeg',
       user: user2._id,
-      userReview: [
-        {
-          description: 'Etiam ornare dictum consectetur. Nunc iaculis tortor at neque molestie auctor. Aliquam eget imperdiet turpis. Donec vel quam mauris. Vivamus gravida placerat dui sit amet iaculis. Phasellus viverra finibus orci et pellentesque.',
-          ReviewFood: 5,
-          ReviewQuality: 5,
-          ReviewInterior: 5,
-          User: user2._id,
-        },
-        {
-          description: 'Etiam ornare dictum consectetur. Nunc iaculis tortor at neque molestie auctor. Aliquam eget imperdiet turpis. Donec vel quam mauris. Vivamus gravida placerat dui sit amet iaculis. Phasellus viverra finibus orci et pellentesque.',
-          ReviewFood: 3,
-          ReviewQuality: 3,
-          ReviewInterior: 5,
-          User: user2._id,
-        },
-        {
-          description: 'Etiam ornare dictum consectetur. Nunc iaculis tortor at neque molestie auctor. Aliquam eget imperdiet turpis. Donec vel quam mauris. Vivamus gravida placerat dui sit amet iaculis. Phasellus viverra finibus orci et pellentesque.',
-          ReviewFood: 1,
-          ReviewQuality: 2,
-          ReviewInterior: 5,
-          User: user1._id,
-        },
-      ],
-      userImage: [
-        {
-          image: 'fixtures/4.jpeg',
-          user: user2._id,
-        },
-        {
-          image: 'fixtures/4.jpeg',
-          user: user2._id,
-        },
-        {
-          image: 'fixtures/4.jpeg',
-          user: user2._id,
-        },
-        {
-          image: 'fixtures/4.jpeg',
-          user: user2._id,
-        },
-        {
-          image: 'fixtures/4.jpeg',
-          user: user2._id,
-        },
-        {
-          image: 'fixtures/4.jpeg',
-          user: user2._id,
-        },
-        {
-          image: 'fixtures/4.jpeg',
-          user: user2._id,
-        },
-        {
-          image: 'fixtures/4.jpeg',
-          user: user2._id,
-        },
-        {
-          image: 'fixtures/4.jpeg',
-          user: user2._id,
-        },
-      ]
     },
   );
+
+  const reviews = await Review.create(
+    {
+      description: 'Etiam ornare dictum consectetur. Nunc iaculis tortor at neque molestie auctor. Aliquam eget imperdiet turpis. Donec vel quam mauris. Vivamus gravida placerat dui sit amet iaculis. Phasellus viverra finibus orci et pellentesque.',
+      ReviewFood: 3,
+      ReviewQuality: 3,
+      ReviewInterior: 0,
+      User: user1._id,
+      Resto: resto1._id,
+    },
+    {
+      description: 'Etiam ornare dictum consectetur. Nunc iaculis tortor at neque molestie auctor. Aliquam eget imperdiet turpis. Donec vel quam mauris. Vivamus gravida placerat dui sit amet iaculis. Phasellus viverra finibus orci et pellentesque.',
+      ReviewFood: 1,
+      ReviewQuality: 1,
+      ReviewInterior: 0,
+      User: user1._id,
+      Resto: resto1._id,
+    },
+    {
+      description: 'Etiam ornare dictum consectetur. Nunc iaculis tortor at neque molestie auctor. Aliquam eget imperdiet turpis. Donec vel quam mauris. Vivamus gravida placerat dui sit amet iaculis. Phasellus viverra finibus orci et pellentesque.',
+      ReviewFood: 5,
+      ReviewQuality: 5,
+      ReviewInterior: 0,
+      User: user2._id,
+      Resto: resto1._id,
+    },
+    {
+      description: 'Etiam ornare dictum consectetur. Nunc iaculis tortor at neque molestie auctor. Aliquam eget imperdiet turpis. Donec vel quam mauris. Vivamus gravida placerat dui sit amet iaculis. Phasellus viverra finibus orci et pellentesque.',
+      ReviewFood: 5,
+      ReviewQuality: 5,
+      ReviewInterior: 5,
+      User: user2._id,
+      Resto: resto2._id,
+    },
+    {
+      description: 'Etiam ornare dictum consectetur. Nunc iaculis tortor at neque molestie auctor. Aliquam eget imperdiet turpis. Donec vel quam mauris. Vivamus gravida placerat dui sit amet iaculis. Phasellus viverra finibus orci et pellentesque.',
+      ReviewFood: 3,
+      ReviewQuality: 3,
+      ReviewInterior: 5,
+      User: user2._id,
+      Resto: resto2._id,
+    },
+    {
+      description: 'Etiam ornare dictum consectetur. Nunc iaculis tortor at neque molestie auctor. Aliquam eget imperdiet turpis. Donec vel quam mauris. Vivamus gravida placerat dui sit amet iaculis. Phasellus viverra finibus orci et pellentesque.',
+      ReviewFood: 1,
+      ReviewQuality: 2,
+      ReviewInterior: 5,
+      User: user1._id,
+      Resto: resto2._id,
+    },
+  );
+
+  for (const review of reviews) {
+    if (review.Resto === resto1._id) {
+      resto1.userReview.push(review)
+      await resto1.save();
+    } else {
+      resto2.userReview.push(review)
+      await resto2.save();
+    }
+  }
+
+  const images = await Image.create(
+    {
+      image: 'fixtures/2.jpeg',
+      user: user1._id,
+      Resto: resto1._id,
+    },
+    {
+      image: 'fixtures/2.jpeg',
+      user: user1._id,
+      Resto: resto1._id,
+    },
+    {
+      image: 'fixtures/2.jpeg',
+      user: user1._id,
+      Resto: resto1._id,
+    },
+    {
+      image: 'fixtures/2.jpeg',
+      user: user1._id,
+      Resto: resto1._id,
+    },
+    {
+      image: 'fixtures/2.jpeg',
+      user: user1._id,
+      Resto: resto1._id,
+    },
+    {
+      image: 'fixtures/2.jpeg',
+      user: user1._id,
+      Resto: resto1._id,
+    },
+    {
+      image: 'fixtures/2.jpeg',
+      user: user1._id,
+      Resto: resto1._id,
+    },
+    {
+      image: 'fixtures/2.jpeg',
+      user: user1._id,
+      Resto: resto2._id,
+    },
+    {
+      image: 'fixtures/4.jpeg',
+      user: user2._id,
+      Resto: resto2._id,
+    },
+    {
+      image: 'fixtures/4.jpeg',
+      user: user2._id,
+      Resto: resto2._id,
+    },
+    {
+      image: 'fixtures/4.jpeg',
+      user: user2._id,
+      Resto: resto2._id,
+    },
+    {
+      image: 'fixtures/4.jpeg',
+      user: user2._id,
+      Resto: resto2._id,
+    },
+    {
+      image: 'fixtures/4.jpeg',
+      user: user2._id,
+      Resto: resto2._id,
+    },
+    {
+      image: 'fixtures/4.jpeg',
+      user: user2._id,
+      Resto: resto2._id,
+    },
+    {
+      image: 'fixtures/4.jpeg',
+      user: user2._id,
+      Resto: resto2._id,
+    },
+    {
+      image: 'fixtures/4.jpeg',
+      user: user2._id,
+      Resto: resto2._id,
+    },
+    {
+      image: 'fixtures/4.jpeg',
+      user: user2._id,
+      Resto: resto2._id,
+    },
+  );
+
+  for (const image of images) {
+    if (image.Resto === resto1._id) {
+      resto1.userImage.push(image)
+      await resto1.save();
+    } else {
+      resto2.userImage.push(image)
+      await resto2.save();
+    }
+  }
 
   await mongoose.connection.close();
 };
