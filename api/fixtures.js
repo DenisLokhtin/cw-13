@@ -208,6 +208,34 @@ const run = async () => {
     }
   }
 
+  for (const review of reviews) {
+    if (review.User === user1._id) {
+      user1.userReviews.push(review)
+    } else {
+      user2.userReviews.push(review)
+    }
+  }
+
+  for (const image of images) {
+    if (image.user === user1._id) {
+      user1.userImage.push(image)
+    } else {
+      user2.userImage.push(image)
+    }
+  }
+
+  const user1Id = user1._id;
+  const user2Id = user2._id;
+
+  await User.updateOne({_id: user1Id}, {userResto: [resto1]});
+  await User.updateOne({_id: user2Id}, {userResto: [resto2]});
+  // await User.findOne({id: user2Id}).then(doc => {
+  //   doc.userResto.push(resto2)
+  //   doc.save();
+  // }).catch(err => {
+  //   console.log('Oh! Dark')
+  // });
+
   await mongoose.connection.close();
 };
 
