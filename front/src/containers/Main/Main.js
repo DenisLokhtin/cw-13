@@ -1,5 +1,5 @@
 import React from 'react';
-import CardResto from "../../CardResto/CardResto";
+import CardResto from "../../components/CardResto/CardResto";
 import Container from "@mui/material/Container";
 
 const Main = () => {

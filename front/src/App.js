@@ -1,6 +1,6 @@
 import React from "react";
 import {Route, Routes,} from "react-router-dom";
-import Main from "./components/UI/Main/Main";
+import Main from "./containers/Main/Main";
 import Register from "./containers/Register/Register";
 import Login from "./containers/Login/Login";
 import Layout from "./components/UI/Layout/Layout";

@@ -6,18 +6,20 @@ import CardContent from '@mui/material/CardContent';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
-import {Link} from "@mui/material";
-import {useSelector} from "react-redux";
+import {Link, Rating} from "@mui/material";
+import {useDispatch, useSelector} from "react-redux";
+import {deleteCardsRequest} from "../../store/actions/cardsAction";
 
 const CardResto = (props) => {
     const user = useSelector(state => state.users.user);
+    const dispatch = useDispatch();
 
     return (
         <Card sx={{maxWidth: 345}}>
             <CardHeader
                 action={
                     user && user.role === 'Admin' ? (
-                        <IconButton aria-label="settings">
+                        <IconButton aria-label="settings" onClick={() => dispatch(deleteCardsRequest())}>
                             <DeleteIcon/>
                         </IconButton>
                     ) : null
@@ -31,15 +33,15 @@ const CardResto = (props) => {
                 alt="Paella dish"
             />
             <CardContent>
-                <Link to={`/Resto/${props.id}`} style={{cursor: 'pointer'}}>Название Ресторана</Link>
-                <Typography variant="body2" color="text.secondary">
-                    Звёзды рейтинга
+                <Link href={`/Resto/${props.id}`} style={{cursor: 'pointer'}}>Название Ресторана</Link>
+                <Typography style={{marginLeft: '-5px'}} variant="body2" color="text.secondary">
+                    <Rating name="read-only" value={5} readOnly/>
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Отзывы и рейтинг
+                    (3.8, 150 отзывов)
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Количество фото
+                    150 фотографий
                 </Typography>
             </CardContent>
         </Card>
