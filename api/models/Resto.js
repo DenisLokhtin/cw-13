@@ -1,5 +1,45 @@
 const mongoose = require('mongoose');
 
+const reviews = new mongoose.Schema({
+  description: {
+    type: String,
+    required: 'Название является обязательным полем',
+  },
+  ReviewFood: {
+    type: Number,
+    min: 0,
+    max: 5,
+    required: 'Рейтинг является обязательным полем',
+  },
+  ReviewQuality: {
+    type: Number,
+    min: 0,
+    max: 5,
+    required: 'Рейтинг является обязательным полем',
+  },
+  ReviewInterior: {
+    type: Number,
+    min: 0,
+    max: 5,
+    required: 'Рейтинг является обязательным полем',
+  },
+  User: {
+    type: mongoose.Types.ObjectId,
+    ref: 'User',
+  },
+});
+
+const images = new mongoose.Schema({
+  image: {
+    type: String,
+    required: 'Изображение является обязательным полем',
+  },
+  User: {
+    type: mongoose.Types.ObjectId,
+    ref: 'User',
+  },
+});
+
 const RestoSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -18,14 +58,8 @@ const RestoSchema = new mongoose.Schema({
     ref: 'User',
     required: 'Юзер является обязательным полем',
   },
-  userReview: {
-    type: mongoose.Types.ObjectId,
-    ref: 'Review',
-  },
-  userImage: {
-    type: mongoose.Types.ObjectId,
-    ref: 'Image',
-  },
+  userReview: [reviews],
+  userImage: [images],
 });
 
 

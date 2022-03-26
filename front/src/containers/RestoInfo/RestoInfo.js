@@ -13,7 +13,7 @@ const RestoInfo = () => {
     const user = useSelector(state => state.users.user);
     const [img, setImg] = useState({
         image: null,
-        User: user._id,
+        User: user ? user._id : null,
         Resto: id,
     });
 
@@ -22,7 +22,7 @@ const RestoInfo = () => {
         ReviewFood: 0,
         ReviewQuality: 0,
         ReviewInterior: 0,
-        User: user._id,
+        User: user ? user._id : null,
         Resto: id,
     });
 
@@ -52,24 +52,29 @@ const RestoInfo = () => {
                          style={{width: 500, height: 300, border: '1px solid grey'}}/>
                 </div>
             </div>
-            <div>
+            <div style={{textAlign: 'center'}}>
                 <h2>Галерея</h2>
 
-                {restoran.userImage ? (
-                    restoran.userImage.map((item) => (
-                        <ImageList sx={{width: 500, height: 450}} cols={3} rowHeight={164}>
-                            <ImageListItem key={item.image}>
-                                <img
-                                    src={'http://localhost:8000/' + item.image}
-                                    srcSet={'http://localhost:8000/' + item.image}
-                                    alt={'img'}
-                                    loading="lazy"
-                                />
-                            </ImageListItem>
+                <div>
+                    {restoran.userImage ? (
+                        <ImageList sx={{width: 500, height: 300, margin: '0 auto'}} cols={3} rowHeight={164}>
+                            {
+                                restoran.userImage.map((item) => (
+                                    <ImageListItem key={item._id}>
+                                        <img
+                                            src={'http://localhost:8000/' + item.image}
+                                            srcSet={'http://localhost:8000/' + item.image}
+                                            key={item._id}
+                                            alt={'img'}
+                                            loading="lazy"
+                                        />
+                                    </ImageListItem>
+                                ))
+                            }
                         </ImageList>
 
-                    ))
-                ) : (<p style={{textAlign: 'center', fontSize: 12}}><b>Галерея пуста</b></p>)}
+                    ) : (<p style={{textAlign: 'center', fontSize: 12}}><b>Галерея пуста</b></p>)}
+                </div>
             </div>
             <div>
                 <h2>Рейтинг</h2>
@@ -83,30 +88,38 @@ const RestoInfo = () => {
             <div>
                 <h2>Отзывы</h2>
             </div>
-            <div>
-                <h2>Оставить Отзыв</h2>
-                <form style={{display: 'flex', flexDirection: 'column', textAlign: 'left'}}>
-                    <p>Еда: <Rating name="ReviewFood" value={review.ReviewFood} onClick={inputChangeHandler}
-                                    required={true}/></p>
-                    <p>Сервис: <Rating name="ReviewQuality" value={review.ReviewQuality} onClick={inputChangeHandler}
-                                       required={true}/></p>
-                    <p>Интерьер: <Rating name="ReviewInterior" value={review.ReviewInterior}
-                                         onClick={inputChangeHandler} required={true}/></p>
-                    <TextField name="description" onChange={inputChangeHandler} type="text" placeholder="Описание"
-                               required={true} style={{marginBottom: '10px'}} multiline rows={8}/>
-                    <Button variant="contained" type="submit" style={{width: 400}}
-                            disabled={review.description === ''}>Send</Button>
-                </form>
-            </div>
-            <div>
-                <h2>Добавить изображение</h2>
-                <form style={{display: 'flex', flexDirection: 'column', width: 400}}>
-                    <TextField name="image" onChange={e => (fileChangeHandler(e))} type="file" placeholder="Изображение"
-                               required={true} style={{marginBottom: '10px'}}/>
-                    <Button variant="contained" type="submit" style={{width: 400}}
-                            disabled={!img.image}>Send</Button>
-                </form>
-            </div>
+            {user && user.role ? (
+                <div>
+                    <div>
+                        <h2>Оставить Отзыв</h2>
+                        <form style={{display: 'flex', flexDirection: 'column', textAlign: 'left'}}>
+                            <p>Еда: <Rating name="ReviewFood" value={review.ReviewFood} onClick={inputChangeHandler}
+                                            required={true}/></p>
+                            <p>Сервис: <Rating name="ReviewQuality" value={review.ReviewQuality}
+                                               onClick={inputChangeHandler}
+                                               required={true}/></p>
+                            <p>Интерьер: <Rating name="ReviewInterior" value={review.ReviewInterior}
+                                                 onClick={inputChangeHandler} required={true}/></p>
+                            <TextField name="description" onChange={inputChangeHandler} type="text"
+                                       placeholder="Описание"
+                                       required={true} style={{marginBottom: '10px'}} multiline rows={8}/>
+                            <Button variant="contained" type="submit" style={{width: 400}}
+                                    disabled={review.description === ''}>Send</Button>
+                        </form>
+                    </div>
+                    <div>
+                        <h2>Добавить изображение</h2>
+                        <form style={{display: 'flex', flexDirection: 'column', width: 400}}>
+                            <TextField name="image" onChange={e => (fileChangeHandler(e))} type="file"
+                                       placeholder="Изображение"
+                                       required={true} style={{marginBottom: '10px'}}/>
+                            <Button variant="contained" type="submit" style={{width: 400}}
+                                    disabled={!img.image}>Send</Button>
+                        </form>
+                    </div>
+                </div>
+            ) : null
+            }
         </Container>
     );
 };

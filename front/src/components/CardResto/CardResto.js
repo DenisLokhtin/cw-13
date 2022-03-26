@@ -14,6 +14,10 @@ const CardResto = (props) => {
     const user = useSelector(state => state.users.user);
     const dispatch = useDispatch();
 
+    // const result = () => {
+    //
+    // }
+
     return (
         <Card sx={{maxWidth: 345, border: '1px solid grey', marginBottom: 7}}>
             <CardHeader
@@ -42,7 +46,7 @@ const CardResto = (props) => {
                     ({props.reviews ? props.reviews.length : 0}, {props.reviews ? props.reviews.length : 0} отзывов)
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {props.images ? props.images.length : 0} фотографий
+                    {props.userImage ? props.userImage.length : 0} фотографий
                 </Typography>
             </CardContent>
         </Card>

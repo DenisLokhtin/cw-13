@@ -23,7 +23,7 @@ const Main = () => {
                             image={elem.image}
                             title={elem.title}
                             reviews={elem.userReview}
-                            userImage={elem.number}
+                            userImage={elem.userImage}
                             name={elem.user.name}
                         />
                     )
