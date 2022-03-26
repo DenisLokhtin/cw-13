@@ -1,10 +1,12 @@
 import React from 'react';
+import CardResto from "../../CardResto/CardResto";
+import Container from "@mui/material/Container";
 
-const Main = (props) => {
+const Main = () => {
     return (
-        <div>
-            f
-        </div>
+        <Container style={{marginTop: 50}}>
+            <CardResto/>
+        </Container>
     )
 };
 
