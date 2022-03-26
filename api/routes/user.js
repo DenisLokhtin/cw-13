@@ -3,6 +3,9 @@ const config = require("../config");
 const {nanoid} = require("nanoid");
 const express = require('express');
 const User = require('../models/User');
+const Review = require('../models/Review');
+const Image = require('../models/Images');
+const Resto = require('../models/Resto');
 
 const router = express.Router();
 

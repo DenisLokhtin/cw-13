@@ -48,7 +48,7 @@ const UserSchema = new mongoose.Schema({
   }],
   userResto: [{
     type: mongoose.Types.ObjectId,
-    ref: 'Card',
+    ref: 'Resto',
   }],
   userImage: [{
     type: mongoose.Types.ObjectId,

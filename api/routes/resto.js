@@ -4,6 +4,9 @@ const path = require('path');
 const {nanoid} = require('nanoid');
 const config = require('../config');
 const Resto = require('../models/Resto');
+const Review = require('../models/Review');
+const Image = require('../models/Images');
+const User = require('../models/User');
 const auth = require('../middleware/auth');
 
 const storage = multer.diskStorage({
@@ -32,17 +35,18 @@ router.delete('/:id', auth, async (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    const resto = await Resto.find({}).populate('user');
+    const resto = await Resto.find({}).populate({path: 'user', model: 'User'}).populate('userReview').populate('userImage');
 
     res.send(resto);
   } catch (e) {
+    console.log(e);
     res.sendStatus(500);
   }
 });
 
 router.get('/:id', async (req, res) => {
   try {
-    const info = await Resto.findById(req.params.id);
+    const info = await Resto.findById(req.params.id).populate({path: 'user', model: 'User'}).populate('userReview').populate('userImage');
 
     if (info) {
       res.send(info);
