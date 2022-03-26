@@ -41,9 +41,9 @@ const run = async () => {
       userReview: [
         {
           description: 'Etiam ornare dictum consectetur. Nunc iaculis tortor at neque molestie auctor. Aliquam eget imperdiet turpis. Donec vel quam mauris. Vivamus gravida placerat dui sit amet iaculis. Phasellus viverra finibus orci et pellentesque.',
-          ReviewFood: 5,
+          ReviewFood: 3,
           ReviewQuality: 3,
-          ReviewInterior: 4,
+          ReviewInterior: 0,
           User: user1._id,
         },
         {
@@ -57,15 +57,11 @@ const run = async () => {
           description: 'Etiam ornare dictum consectetur. Nunc iaculis tortor at neque molestie auctor. Aliquam eget imperdiet turpis. Donec vel quam mauris. Vivamus gravida placerat dui sit amet iaculis. Phasellus viverra finibus orci et pellentesque.',
           ReviewFood: 5,
           ReviewQuality: 5,
-          ReviewInterior: 4,
+          ReviewInterior: 0,
           User: user2._id,
         },
       ],
       userImage: [
-        {
-          image: 'fixtures/2.jpeg',
-          user: user1._id,
-        },
         {
           image: 'fixtures/2.jpeg',
           user: user1._id,
@@ -117,14 +113,14 @@ const run = async () => {
           description: 'Etiam ornare dictum consectetur. Nunc iaculis tortor at neque molestie auctor. Aliquam eget imperdiet turpis. Donec vel quam mauris. Vivamus gravida placerat dui sit amet iaculis. Phasellus viverra finibus orci et pellentesque.',
           ReviewFood: 3,
           ReviewQuality: 3,
-          ReviewInterior: 3,
+          ReviewInterior: 5,
           User: user2._id,
         },
         {
           description: 'Etiam ornare dictum consectetur. Nunc iaculis tortor at neque molestie auctor. Aliquam eget imperdiet turpis. Donec vel quam mauris. Vivamus gravida placerat dui sit amet iaculis. Phasellus viverra finibus orci et pellentesque.',
           ReviewFood: 1,
           ReviewQuality: 2,
-          ReviewInterior: 1,
+          ReviewInterior: 5,
           User: user1._id,
         },
       ],

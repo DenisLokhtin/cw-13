@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
 });
 
 router.post('/sessions', async (req, res) => {
-  const user = await User.findOne({email: req.body.email});
+  const user = await User.findOne({email: req.body.email}).populate('userReviews').populate('userResto').populate('userImage');
 
   if (!user) {
     return res.status(401).send({message: 'Credentials are wrong!'});

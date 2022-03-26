@@ -7,14 +7,12 @@ import Button from "@mui/material/Button";
 
 const AddResto = () => {
     const dispatch = useDispatch();
-    const user = useSelector(state => state.users.user);
 
     const [resto, setResto] = useState({
         title: '',
         description: '',
         image: null,
         checkbox: false,
-        user: user._id,
     });
 
     const inputChangeHandler = e => {

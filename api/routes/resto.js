@@ -60,7 +60,7 @@ router.post('/', auth, upload.single('image'), async (req, res) => {
       const restoData = {
         title: req.body.title,
         description: req.body.description,
-        user: req.body.user,
+        user: req.user._id,
       };
 
       if (req.file) {

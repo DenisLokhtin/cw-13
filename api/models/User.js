@@ -42,18 +42,18 @@ const UserSchema = new mongoose.Schema({
     enum: ['admin', 'user'],
     required: true,
   },
-  userReviews: {
+  userReviews: [{
     type: mongoose.Types.ObjectId,
     ref: 'Review',
-  },
-  userResto: {
+  }],
+  userResto: [{
     type: mongoose.Types.ObjectId,
     ref: 'Card',
-  },
-  userImage: {
+  }],
+  userImage: [{
     type: mongoose.Types.ObjectId,
     ref: 'Image',
-  },
+  }],
 });
 
 UserSchema.pre('save', async function (next) {

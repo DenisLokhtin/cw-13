@@ -3,3 +3,5 @@
 /front/.env
 /api/node_modules
 /api/.env
+/tests/node_modules
+/tests/.env
