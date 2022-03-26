@@ -25,7 +25,7 @@ const Register = () => {
     };
 
     return (
-        <Container>
+        <Container style={{marginTop: 50}}>
             <form onSubmit={submitFormHandler} style={{textAlign: 'center'}} className="authorization">
                 <h2>Register</h2>
                 <Grid style={{display: 'flex', flexDirection: 'column', width: 300, margin: '0 auto'}}>

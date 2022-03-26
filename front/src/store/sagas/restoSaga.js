@@ -34,7 +34,6 @@ export function* cardsSagas({payload}) {
 }
 
 export function* oneCardsSaga({payload}) {
-    console.log('v');
     try {
         const response = yield axiosApi.get('/resto/' + payload);
         yield put(fetchOneCardsSuccess(response.data));
@@ -45,7 +44,6 @@ export function* oneCardsSaga({payload}) {
 }
 
 export function* addCardsSaga({payload: newCards}) {
-    console.log('d');
     try {
         yield axiosApi.post('/resto', newCards);
         yield put(addCardsSuccess());

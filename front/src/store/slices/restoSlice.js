@@ -3,7 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 const name = 'cards';
 const initialState = {
     cards: [],
-    oneCards:{},
+    oneCard:{},
     singleLoading: false,
     fetchLoading: false,
     addLoading: false,
@@ -39,7 +39,7 @@ const restoSlice = createSlice({
             state.singleLoading = true;
         },
         fetchOneCardsSuccess(state, action) {
-            state.oneCards = action.payload;
+            state.oneCard = action.payload;
             state.singleLoading = false;
         },
         fetchOneCardsFailure(state) {

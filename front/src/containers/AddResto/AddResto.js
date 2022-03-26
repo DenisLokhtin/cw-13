@@ -22,7 +22,6 @@ const AddResto = () => {
         if (value === 'on') {
             value = value ? !resto.checkbox : true;
         }
-        console.log(resto.file);
         setResto(prevState => ({...prevState, [name]: value}));
     };
 
@@ -44,7 +43,7 @@ const AddResto = () => {
     };
 
     return (
-        <Container style={{textAlign: "center"}}>
+        <Container style={{textAlign: "center", marginTop: 50}}>
             <h2>Добавить Ресторан</h2>
             <form onSubmit={submitFormHandler} style={{display: 'flex', flexDirection: 'column', margin: '0 auto', width: 400}}>
                 <TextField name="title" onChange={e => (inputChangeHandler(e))} type="text" placeholder="Название"

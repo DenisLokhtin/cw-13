@@ -15,7 +15,7 @@ const CardResto = (props) => {
     const dispatch = useDispatch();
 
     return (
-        <Card sx={{maxWidth: 345}}>
+        <Card sx={{maxWidth: 345, border: '1px solid grey', marginBottom: 7}}>
             <CardHeader
                 action={
                     user && user.role === 'admin' ? (
@@ -30,7 +30,8 @@ const CardResto = (props) => {
                 component="img"
                 height="194"
                 image={'http://localhost:8000/' + props.image}
-                alt="Paella dish"
+                alt="img"
+                style={{width: 345}}
             />
             <CardContent>
                 <Link href={`/Resto/${props.id}`} style={{cursor: 'pointer'}}>{props.title}</Link>

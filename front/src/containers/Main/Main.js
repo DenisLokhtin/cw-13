@@ -10,10 +10,10 @@ const Main = () => {
 
     useEffect(() => {
         dispatch(fetchCardsRequest())
-    }, []);
+    }, [dispatch]);
 
     return (
-        <Container style={{marginTop: 50}}>
+        <Container style={{marginTop: 50, display: "flex", justifyContent: "space-between", flexWrap: 'wrap'}}>
             {restorans[0] ?
                 restorans.map((elem) => {
                     return (
