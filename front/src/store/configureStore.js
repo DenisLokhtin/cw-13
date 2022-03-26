@@ -5,11 +5,11 @@ import createSagaMiddleware from 'redux-saga';
 import {rootSagas} from "./rootSagas";
 import {configureStore} from "@reduxjs/toolkit";
 import usersSlice, {initialState} from "./slices/usersSlice";
-import resto from "./slices/resto";
+import restoSlice from "./slices/restoSlice";
 
 const rootReducer = combineReducers({
     'users': usersSlice.reducer,
-    'resto': resto.reducer,
+    'resto': restoSlice.reducer,
 });
 
 const persistedState = loadFromLocalStorage();

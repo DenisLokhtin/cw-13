@@ -19,12 +19,12 @@ const CardResto = (props) => {
             <CardHeader
                 action={
                     user && user.role === 'admin' ? (
-                        <IconButton aria-label="settings" onClick={() => dispatch(deleteCardsRequest())}>
+                        <IconButton aria-label="settings" onClick={() => dispatch(deleteCardsRequest(props.id))}>
                             <DeleteIcon/>
                         </IconButton>
                     ) : null
                 }
-                title="Shrimp and Chorizo Paella"
+                title={props.name}
             />
             <CardMedia
                 component="img"
@@ -35,13 +35,13 @@ const CardResto = (props) => {
             <CardContent>
                 <Link href={`/Resto/${props.id}`} style={{cursor: 'pointer'}}>{props.title}</Link>
                 <Typography style={{marginLeft: '-5px'}} variant="body2" color="text.secondary">
-                    <Rating name="read-only" value={5} readOnly/>
+                    <Rating name="read-only" value={props.reviews} readOnly/>
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    (3.8, 150 отзывов)
+                    ({props.reviews ? props.reviews.length : 0}, {props.reviews ? props.reviews.length : 0} отзывов)
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    150 фотографий
+                    {props.images ? props.images.length : 0} фотографий
                 </Typography>
             </CardContent>
         </Card>

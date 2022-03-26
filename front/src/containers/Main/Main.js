@@ -14,7 +14,7 @@ const Main = () => {
 
     return (
         <Container style={{marginTop: 50}}>
-            {restorans ?
+            {restorans[0] ?
                 restorans.map((elem) => {
                     return (
                         <CardResto
@@ -22,6 +22,9 @@ const Main = () => {
                             id={elem._id}
                             image={elem.image}
                             title={elem.title}
+                            reviews={elem.userReview}
+                            userImage={elem.number}
+                            name={elem.user.name}
                         />
                     )
                 })

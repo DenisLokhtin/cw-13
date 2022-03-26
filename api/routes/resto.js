@@ -19,9 +19,20 @@ const upload = multer({storage});
 
 const router = express.Router();
 
+router.delete('/:id', auth, async (req, res) => {
+  console.log(req.params)
+  try {
+    const resto = await Resto.deleteOne({_id: req.params.id});
+    res.send(resto);
+  } catch (e) {
+    console.log(e);
+    res.sendStatus(500);
+  }
+});
+
 router.get('/', async (req, res) => {
   try {
-    const resto = await Resto.find({}).populate('userReview', 'userImage');
+    const resto = await Resto.find({}).populate('user').populate('userReview').populate('userImage');
 
     res.send(resto);
   } catch (e) {
@@ -65,22 +76,5 @@ router.post('/', auth, upload.single('image'), async (req, res) => {
     }
   }
 });
-
-router.delete('/:id', async (req, res) => {
-  try {
-    const resto = await Resto.findById(req.params.id);
-
-    if (Object.keys(resto).length === 0) {
-      return res.status(404).send({error: `Ресторан не найден.`});
-    } else {
-      resto.deleted = true;
-      await resto.save();
-      return res.send({message: `Ресторан ${resto.title} успешно удален.`})
-    }
-  } catch (error) {
-    res.status(404).send(error);
-  }
-});
-
 
 module.exports = router;

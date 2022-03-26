@@ -1,4 +1,4 @@
-import resto from "../slices/resto";
+import restoSlice from "../slices/restoSlice";
 
 export const {
     fetchCardsRequest,
@@ -13,4 +13,4 @@ export const {
     deleteCardsRequest,
     deleteCardsSuccess,
     deleteCardsFailure,
-} = resto.actions;
+} = restoSlice.actions;

@@ -6,10 +6,7 @@ import Login from "./containers/Login/Login";
 import Layout from "./components/UI/Layout/Layout";
 import './App.css'
 import AddResto from "./containers/AddResto/AddResto";
-
-function RestoInfo() {
-    return null;
-}
+import RestoInfo from "./containers/RestoInfo/RestoInfo";
 
 const App = () => {
     return (
