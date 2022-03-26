@@ -5,14 +5,21 @@ import Register from "./containers/Register/Register";
 import Login from "./containers/Login/Login";
 import Layout from "./components/UI/Layout/Layout";
 import './App.css'
+import AddResto from "./containers/AddResto/AddResto";
+
+function RestoInfo() {
+    return null;
+}
 
 const App = () => {
     return (
         <Layout>
             <Routes>
-                <Route element={<Main/>} path="/" />
-                <Route element={<Register/>} path="/register" />
-                <Route element={<Login/>} path="/login" />
+                <Route element={<Main/>} path="/"/>
+                <Route element={<Register/>} path="/register"/>
+                <Route element={<Login/>} path="/login"/>
+                <Route element={<AddResto/>} path="/AddResto"/>
+                <Route element={<RestoInfo/>} path="/Resto/:id"/>
             </Routes>
         </Layout>
     )

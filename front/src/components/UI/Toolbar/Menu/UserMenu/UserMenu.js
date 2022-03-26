@@ -8,10 +8,12 @@ const UserMenu = ({user}) => {
 
     return (
         <div>
-            Hello, <Link style={{color: 'white'}} to="/myPosts"><b>{user}</b></Link>! <Link to={'/'}
-                                                                                            style={{color: 'white'}}
-                                                                                            onClick={() => dispatch(logoutUser())}
-                                                                                            className="link">Logout</Link>
+            Hello, <span style={{color: 'white'}}><b>{user}</b></span>!
+            <Link to={'/AddResto'} style={{color: 'white', marginLeft: 10}}><b>Add Resto</b></Link>
+            <Link to={'/'}
+                  style={{color: 'white', marginLeft: 10}}
+                  onClick={() => dispatch(logoutUser())}
+                  className="link">Logout</Link>
         </div>
     );
 };

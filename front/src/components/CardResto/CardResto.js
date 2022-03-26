@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {Link, Rating} from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
-import {deleteCardsRequest} from "../../store/actions/cardsAction";
+import {deleteCardsRequest} from "../../store/actions/restoAction";
 
 const CardResto = (props) => {
     const user = useSelector(state => state.users.user);
@@ -18,7 +18,7 @@ const CardResto = (props) => {
         <Card sx={{maxWidth: 345}}>
             <CardHeader
                 action={
-                    user && user.role === 'Admin' ? (
+                    user && user.role === 'admin' ? (
                         <IconButton aria-label="settings" onClick={() => dispatch(deleteCardsRequest())}>
                             <DeleteIcon/>
                         </IconButton>
@@ -29,11 +29,11 @@ const CardResto = (props) => {
             <CardMedia
                 component="img"
                 height="194"
-                image="/static/images/cards/paella.jpg"
+                image={'http://localhost:8000/' + props.image}
                 alt="Paella dish"
             />
             <CardContent>
-                <Link href={`/Resto/${props.id}`} style={{cursor: 'pointer'}}>Название Ресторана</Link>
+                <Link href={`/Resto/${props.id}`} style={{cursor: 'pointer'}}>{props.title}</Link>
                 <Typography style={{marginLeft: '-5px'}} variant="body2" color="text.secondary">
                     <Rating name="read-only" value={5} readOnly/>
                 </Typography>

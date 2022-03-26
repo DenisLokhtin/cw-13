@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const NewsSchema = new mongoose.Schema({
+const RestoSchema = new mongoose.Schema({
   title: {
     type: String,
     required: 'Название является обязательным полем',
@@ -11,14 +11,16 @@ const NewsSchema = new mongoose.Schema({
   },
   image: {
     type: String,
+    required: 'Изображение является обязательным полем',
   },
   user: {
     type: mongoose.Types.ObjectId,
     ref: 'User',
+    required: 'Юзер является обязательным полем',
   },
-  userResto: {
+  userReview: {
     type: mongoose.Types.ObjectId,
-    ref: 'Card',
+    ref: 'Review',
   },
   userImage: {
     type: mongoose.Types.ObjectId,
@@ -27,5 +29,5 @@ const NewsSchema = new mongoose.Schema({
 });
 
 
-const News = mongoose.model('News', NewsSchema);
-module.exports = News;
+const Resto = mongoose.model('Resto', RestoSchema);
+module.exports = Resto;

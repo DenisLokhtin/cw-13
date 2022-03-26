@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const name = 'cards';
 const initialState = {
-    cards: [],
+    cards: null,
     oneCards:{},
     singleLoading: false,
     fetchLoading: false,
@@ -10,7 +10,7 @@ const initialState = {
     addError: null,
 };
 
-const cardsSlice = createSlice({
+const resto = createSlice({
     name,
     initialState,
     reducers: {
@@ -63,4 +63,4 @@ const cardsSlice = createSlice({
     }
 });
 
-export default cardsSlice;
+export default resto;

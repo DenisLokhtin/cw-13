@@ -8,6 +8,7 @@ import {
     registerUserSuccess
 } from "../actions/usersAction";
 import axiosApi from "../../axiosApi";
+import History from '../../History';
 import {toast} from "react-toastify";
 
 export function* registerUserSaga({payload: userData}) {
@@ -15,7 +16,9 @@ export function* registerUserSaga({payload: userData}) {
         const response = yield axiosApi.post('/users', userData);
         yield put(registerUserSuccess(response.data));
         toast.success('Registered successful!');
+        History.push('/');
     } catch (error) {
+        History.push('/');
         toast.error(error.response.data.global);
         yield put(registerUserFailure(error.response.data));
     }
@@ -26,7 +29,9 @@ export function* loginUserSaga({payload: userData}) {
         const response = yield axiosApi.post('users/sessions', userData);
         yield put(loginUserRequest(response.data.user));
         toast.success('Login successful!');
+        History.push('/');
     } catch (error) {
+        History.push('/');
         toast.error(error.response.data);
     }
 }
@@ -36,7 +41,9 @@ export function* logoutUserSaga() {
         axiosApi.delete('/users/sessions');
         yield put(logoutUserSuccess());
         toast.success('Logout successful!');
+        History.push('/');
     } catch (error) {
+        History.push('/');
         toast.error(error.response.data);
         yield put(logoutUserFailure(error.response.data));
     }

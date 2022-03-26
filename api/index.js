@@ -4,6 +4,7 @@ const config = require('./config');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const user = require('./routes/user');
+const resto = require('./routes/resto');
 
 const app = express();
 app.use(cors());
@@ -13,6 +14,7 @@ app.use(express.static('public'));
 const port = 8000;
 
 app.use('/users', user);
+app.use('/resto', resto);
 
 
 const run = async () => {
