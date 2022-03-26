@@ -14,9 +14,15 @@ const CardResto = (props) => {
     const user = useSelector(state => state.users.user);
     const dispatch = useDispatch();
 
-    // const result = () => {
-    //
-    // }
+    const result = () => {
+        if (props.reviews) {
+            let sum = 0;
+            props.reviews.map((item) => {
+                sum += ((item.ReviewFood + item.ReviewQuality + item.ReviewInterior) / 3) / props.reviews.length;
+            })
+            return (Math.round(sum * 10) / 10);
+        }
+    };
 
     return (
         <Card sx={{maxWidth: 345, border: '1px solid grey', marginBottom: 7}}>
@@ -40,10 +46,10 @@ const CardResto = (props) => {
             <CardContent>
                 <Link href={`/Resto/${props.id}`} style={{cursor: 'pointer'}}>{props.title}</Link>
                 <Typography style={{marginLeft: '-5px'}} variant="body2" color="text.secondary">
-                    <Rating name="read-only" value={props.reviews} readOnly/>
+                    <Rating name="read-only" value={result()} readOnly/>
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    ({props.reviews ? props.reviews.length : 0}, {props.reviews ? props.reviews.length : 0} отзывов)
+                    ({props.reviews ? result() : 0}, {props.reviews ? props.reviews.length : 0} отзывов)
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                     {props.userImage ? props.userImage.length : 0} фотографий

@@ -26,6 +26,46 @@ const RestoInfo = () => {
         Resto: id,
     });
 
+    const result = () => {
+        if (restoran.userReview) {
+            let sum = 0;
+            restoran.userReview.map((item) => {
+                sum += ((item.ReviewFood + item.ReviewQuality + item.ReviewInterior) / 3) / restoran.userReview.length;
+            })
+            return (Math.round(sum * 10) / 10);
+        }
+    };
+
+    const resultOnce = (name) => {
+        if (restoran.userReview) {
+            if (name === 'ReviewFood') {
+                let sum = 0;
+                        restoran.userReview.map((item) => {
+                            sum += (item.ReviewFood) / restoran.userReview.length;
+                            console.log(name)
+                        })
+
+                        return (Math.round(sum * 10) / 10);
+            } else if (name === 'ReviewInterior') {
+                let sum = 0;
+                        restoran.userReview.map((item) => {
+                            sum += (item.ReviewInterior) / restoran.userReview.length;
+                            console.log(name)
+                        })
+
+                        return (Math.round(sum * 10) / 10);
+            } else if (name === 'ReviewQuality') {
+                let sum = 0;
+                        restoran.userReview.map((item) => {
+                            sum += (item.ReviewQuality) / restoran.userReview.length;
+                            console.log(name)
+                        })
+
+                        return (Math.round(sum * 10) / 10);
+            }
+        }
+    };
+
     useEffect(() => {
         dispatch(fetchOneCardsRequest(id))
     }, [dispatch, id])
@@ -79,10 +119,10 @@ const RestoInfo = () => {
             <div>
                 <h2>Рейтинг</h2>
                 <div style={{display: 'flex', flexDirection: 'column', textAlign: 'left'}}>
-                    <p>В общем: <Rating name="total" value={0} readOnly/></p>
-                    <p>Еда: <Rating name="ReviewFood" value={0} readOnly/></p>
-                    <p>Сервис: <Rating name="ReviewQuality" value={0} readOnly/></p>
-                    <p>Интерьер: <Rating name="ReviewInterior" value={0} readOnly/></p>
+                    <p>В общем: <Rating name="total" value={result() || 0} readOnly/></p>
+                    <p>Еда: <Rating name="ReviewFood" value={resultOnce("ReviewFood") || 0} readOnly/></p>
+                    <p>Сервис: <Rating name="ReviewQuality" value={resultOnce("ReviewQuality") || 0} readOnly/></p>
+                    <p>Интерьер: <Rating name="ReviewInterior" value={resultOnce('ReviewInterior') || 0} readOnly/></p>
                 </div>
             </div>
             <div>
